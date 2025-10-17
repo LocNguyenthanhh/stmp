@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <style>
+    /* ================= RESET ================= */
+    * { box-sizing: border-box; margin:0; padding:0; font-family: "Segoe UI", sans-serif; }
+
+    /* ================= HEADER ================= */
+    .header {
+        display: flex; justify-content: space-between; align-items: center;
+        background: #2b3a55; color: white; padding: 15px 30px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .header .logo { font-weight: bold; }
+    .header .title { font-size: 18px; }
+    .header .user-info { display: flex; align-items: center; gap: 15px; }
+    .logout-btn {
+        background: #dc3545; color: white; border: none; border-radius: 6px;
+        padding: 8px 14px; cursor: pointer; font-weight: bold; transition:0.2s;
+    }
+    .logout-btn:hover { background: #b02a37; }
+
+    /* ================= LAYOUT ================= */
+    .layout {
+        display: grid;
+        grid-template-columns: 220px 1fr 250px; /* sidebar | main | stats */
+        height: calc(100vh - 60px);
+        gap: 15px;
+    }
+
+    /* ================= SIDEBAR ================= */
+    .sidebar { background: #1e2a3a; color: white; padding-top:20px; }
+    .sidebar ul { list-style: none; }
+    .sidebar li { padding: 14px 20px; cursor: pointer; transition: 0.2s; }
+    .sidebar li:hover, .sidebar li.active { background: #30475e; }
+
+    /* ================= MAIN CONTENT ================= */
+    .main-content { background: #f5f6fa; padding:30px; overflow-y:auto; }
+    .main-content h2 { margin-bottom: 15px; }
+    .panel { margin-top:30px; background:white; padding:20px; border-radius:10px; }
+    .panel h3 { margin-bottom:10px; }
+    .panel ul { list-style:none; }
+    .panel li { margin:6px 0; }
+
+    /* ================= STATS ================= */
+    .stats-overview {
+        background: #f5f6fa;
+        padding: 20px;
+        overflow-y:auto;
+    }
+    .card {
+        background:white; padding:20px; border-radius:10px;
+        box-shadow:0 2px 6px rgba(0,0,0,0.1); text-align:center; margin-bottom: 15px;
+    }
+    .card h3 { color:#333; font-size:15px; }
+    .card p { font-size:20px; font-weight:bold; margin-top:10px; }
+    </style>
+</head>
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="header">
+        <div class="logo">⚙️ Admin Panel</div>
+        <div class="title">Hệ thống quản lý tài khoản</div>
+        <div class="user-info">
+            <span>Xin chào, Admin</span>
+            <form action="{{ url_for('logout') }}" method="get">
+                <button type="submit" class="logout-btn">Đăng xuất</button>
+            </form>
+        </div>
+    </header>
+
+    <!-- ================= LAYOUT 3 CỘT ================= -->
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <ul>
+                <li> Dashboard Overview</li>
+                <li onclick="window.location.href='{{ url_for('admin_users') }}'">User Management</li>
+                <li> Conversation Management</li>
+                <li onclick="window.location.href='{{ url_for('admin_payments') }}'">Payment Management</li>
+                <li> Analytics</li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <h2>Bảng điều khiển tổng quan</h2>
+
+            <div class="panel">
+                <h3>Công việc cần xử lý</h3>
+                <ul>
+                    <li>🕐 Duyệt tài khoản mới đăng ký</li>
+                    <li>💳 Xác nhận thanh toán đơn hàng #2053</li>
+                    <li>💬 Kiểm tra phản hồi từ user #104</li>
+                </ul>
+            </div>
+        </main>
+
+        <!-- STATS OVERVIEW -->
+        <aside class="stats-overview">
+            <div class="card"><h3>Tổng số người dùng</h3><p>1,245</p></div>
+            <div class="card"><h3>Người dùng mới hôm nay</h3><p>32</p></div>
+            <div class="card"><h3>Đơn hàng chờ xử lý</h3><p>14</p></div>
+            <div class="card"><h3>Doanh thu tháng</h3><p>₫12,400,000</p></div>
+        </aside>
+
+    </div>
+
+</body>
+</html>

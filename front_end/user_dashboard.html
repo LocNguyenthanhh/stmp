@@ -1,0 +1,271 @@
+<!--
+File: index.html
+Chức năng: Giao diện người dùng hệ thống quản lý tài khoản.
+Các phần:
+ - HEADER: Logo, tên hệ thống, thông tin user, logout
+ - SIDEBAR TRÁI: Lịch sử hội thoại
+ - KHUNG CHÍNH: Chat AI
+ - SIDEBAR PHẢI: Lịch sử giao dịch
+-->
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Hệ thống quản lý tài khoản - User Website</title>
+    <style>
+        /* ------------------------------ */
+        /* TOÀN TRANG */
+        /* ------------------------------ */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            background-color: #f4f5f7;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* ------------------------------ */
+        /* HEADER */
+        /* ------------------------------ */
+        header {
+            background-color: #1f2937;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        header .logo {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        header .system-name {
+            font-size: 16px;
+        }
+        header .user-info {
+            font-size: 14px;
+        }
+        header .logout {
+            background-color: #ef4444;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* ------------------------------ */
+        /* MAIN LAYOUT */
+        /* ------------------------------ */
+        .container {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 10px;
+            padding: 10px;
+        }
+
+        /* ------------------------------ */
+        /* CỘT LỊCH SỬ HỘI THOẠI */
+        /* ------------------------------ */
+        .chat-history {
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        .chat-history h3 {
+            margin-top: 0;
+        }
+        .chat-item {
+            border: 1px solid #ddd;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .chat-item:hover {
+            background: #f0f0f0;
+        }
+
+        /* ------------------------------ */
+        /* KHUNG CHAT AI */
+        /* ------------------------------ */
+        .chat-box {
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        .message {
+            margin: 5px 0;
+            max-width: 80%;
+            padding: 8px;
+            border-radius: 6px;
+        }
+        .ai {
+            background-color: #e5e7eb;
+            align-self: flex-start;
+        }
+        .user {
+            background-color: #60a5fa;
+            color: white;
+            align-self: flex-end;
+        }
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-right: 10px;
+        }
+        .chat-input button {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        /* ------------------------------ */
+        /* CỘT LỊCH SỬ GIAO DỊCH */
+        /* ------------------------------ */
+        .transaction-history {
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .transaction-history h3 {
+            margin-top: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 6px;
+            text-align: center;
+        }
+        th {
+            background-color: #f3f4f6;
+        }
+        .pending {
+            color: #f59e0b;
+            font-weight: bold;
+        }
+        .success {
+            color: #16a34a;
+            font-weight: bold;
+        }
+        .failed {
+            color: #dc2626;
+            font-weight: bold;
+        }
+        .pay-btn {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="logo">⚙️ LOGO</div>
+        <div class="system-name">Hệ thống quản lý tài khoản</div>
+        <div class="user-info">
+            Xin chào, <strong>Nguyễn Văn A</strong>
+        <form action="{{ url_for('logout') }}" method="get">
+            <button type="submit" class="logout-btn">Đăng xuất</button>
+        </form>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <!-- LỊCH SỬ HỘI THOẠI -->
+        <div class="chat-history">
+            <h3>Lịch sử hội thoại</h3>
+            <div class="chat-item">Hội thoại #1 - 12/10/2025</div>
+            <div class="chat-item">Hội thoại #2 - 14/10/2025</div>
+            <div class="chat-item">Hội thoại #3 - 16/10/2025</div>
+        </div>
+
+        <!-- KHUNG CHAT AI -->
+        <div class="chat-box">
+            <h3>Khung chat AI</h3>
+            <div class="messages">
+                <div class="message ai">Xin chào! Tôi là trợ lý AI, bạn cần hỗ trợ gì?</div>
+                <div class="message user">Tôi muốn xem gói dịch vụ của mình.</div>
+                <div class="message ai">Gói hiện tại: Premium, hết hạn vào 31/12/2025.</div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Nhập tin nhắn...">
+                <button>Gửi</button>
+            </div>
+        </div>
+
+        <!-- LỊCH SỬ GIAO DỊCH -->
+        <div class="transaction-history">
+            <h3>Lịch sử giao dịch</h3>
+            <table>
+                <tr>
+                    <th>Mã GD</th>
+                    <th>Thời gian</th>
+                    <th>Gói</th>
+                    <th>Trạng thái</th>
+                    <th>Hành động</th>
+                </tr>
+                <tr>
+                    <td>#001</td>
+                    <td>10/10/2025</td>
+                    <td>Basic</td>
+                    <td class="success">Thành công</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>#002</td>
+                    <td>14/10/2025</td>
+                    <td>Pro</td>
+                    <td class="pending">Chờ thanh toán</td>
+                    <td><a href="{{ url_for('payment') }}"><button class="pay-btn">Thanh toán</button></a></td>
+                </tr>
+                <tr>
+                    <td>#003</td>
+                    <td>16/10/2025</td>
+                    <td>Premium</td>
+                    <td class="failed">Thất bại</td>
+                    <td>-</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

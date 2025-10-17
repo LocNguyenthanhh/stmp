@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Payment Management</title>
+<style>
+body { font-family:"Segoe UI", sans-serif; background:#f5f6fa; padding:30px; }
+h2 { color:#2b3a55; margin-bottom:20px; }
+table { width:100%; border-collapse:collapse; background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+th, td { padding:12px; text-align:left; border-bottom:1px solid #eee; }
+th { background:#2b3a55; color:white; }
+button { padding:6px 12px; border:none; border-radius:6px; cursor:pointer; transition:0.2s; margin-right:5px;}
+.confirm { background:#28a745; color:white; }
+.confirm:hover { background:#1e7e34; }
+.reject { background:#dc3545; color:white; }
+.reject:hover { background:#b02a37; }
+</style>
+</head>
+<body>
+<h2>Quản lý thanh toán</h2>
+<table>
+    <tr>
+        <th>Mã GD</th><th>Người dùng</th><th>Số tiền</th><th>Trạng thái</th><th>Hành động</th>
+    </tr>
+    <tr>
+        <td>2053</td><td>Nguyễn Văn A</td><td>₫500,000</td><td>Chờ xác nhận</td>
+        <td><button class="confirm">Xác nhận</button><button class="reject">Từ chối</button></td>
+    </tr>
+    <tr>
+        <td>2054</td><td>Trần Thị B</td><td>₫1,200,000</td><td>Thành công</td>
+        <td>-</td>
+    </tr>
+</table>
+</body>
+</html>

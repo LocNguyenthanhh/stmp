@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Thanh toán</title>
+<style>
+body { font-family: "Segoe UI", sans-serif; background:#f0f2f5; display:flex; justify-content:center; align-items:center; height:100vh; }
+.payment-container { background:white; padding:30px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.2); width:350px; text-align:center; }
+h2 { margin-bottom:20px; color:#2b3a55; }
+button { padding:12px 20px; border:none; border-radius:6px; background:#2b3a55; color:white; font-size:16px; cursor:pointer; margin-top:10px; transition:0.2s; }
+button:hover { background:#1f2b44; }
+.qr { margin-top:20px; }
+.qr img { width:200px; }
+</style>
+</head>
+<body>
+<div class="payment-container">
+    <h2>Thanh toán đơn hàng #2053</h2>
+    <p>This is a QR code</p>
+    <button onclick="confirmPayment()">Xác nhận thanh toán</button>
+</div>
+
+<script>
+function confirmPayment() {
+    alert("Thanh toán đã gửi, chờ admin xác nhận.");
+}
+</script>
+</body>
+</html>

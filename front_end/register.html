@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký tài khoản</title>
+    <style>
+    /* ================= RESET ================= */
+    * { box-sizing: border-box; margin:0; padding:0; font-family: "Segoe UI", sans-serif; }
+
+    body {
+        background: #f0f2f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    /* ================= FORM CONTAINER ================= */
+    .register-container {
+        background: white;
+        padding: 30px 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        width: 400px;
+    }
+
+    .register-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #2b3a55;
+    }
+
+    .register-container form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .register-container input {
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+    .register-container button {
+        padding: 12px;
+        border-radius: 6px;
+        border: none;
+        background: #2b3a55;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .register-container button:hover {
+        background: #1f2b44;
+    }
+
+    .register-container .link {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    .register-container .link a {
+        color: #2b3a55;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .register-container .link a:hover {
+        text-decoration: underline;
+    }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>Đăng ký tài khoản</h2>
+        <form action="/register" method="post">
+            <input type="text" name="fullname" placeholder="Họ và tên" required>
+            <input type="text" name="username" placeholder="Tên người dùng" required>
+            <input type="password" name="password" placeholder="Mật khẩu" required>
+            <input type="password" name="confirm_password" placeholder="Xác thực mật khẩu" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="tel" name="phone" placeholder="Số điện thoại" required>
+            <button type="submit">Đăng ký</button>
+        </form>
+        <div class="link">
+            Đã có tài khoản? <a href="/login">Đăng nhập</a>
+        </div>
+    </div>
+</body>
+</html>
